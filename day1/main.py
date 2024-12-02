@@ -8,16 +8,16 @@ def main() -> None:
         (int(n1), int(n2))
         for n1, n2 in [line.split(maxsplit=2) for line in input_lines if line != ""]
     ])
-    n1s, n2s = sorted(n1s), sorted(n2s)
+    sorted_n1s, sorted_n2s = sorted(n1s), sorted(n2s)
 
-    distances = [abs(n1 - n2) for n1, n2 in zip(n1s, n2s)]
+    distances = [abs(n1 - n2) for n1, n2 in zip(sorted_n1s, sorted_n2s)]
     print(f"The total distance between the two lists is {sum(distances)}")
 
-    n2_frequencies = defaultdict(int)
-    for n2 in n2s:
+    n2_frequencies: dict[int, int] = defaultdict(int)
+    for n2 in sorted_n2s:
         n2_frequencies[n2] += 1
 
-    similarity_scores = [n1 * n2_frequencies[n1] for n1 in n1s]
+    similarity_scores = [n1 * n2_frequencies[n1] for n1 in sorted_n1s]
     print(f"The similarity score is {sum(similarity_scores)}")
 
 
