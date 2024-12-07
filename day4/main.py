@@ -78,8 +78,8 @@ def main() -> None:
     total_xmas_patterns = 0
     total_xmas_cross_patterns = 0
 
-    for y in range(len(grid)):
-        for x in range(len(grid[y])):
+    for y, row in enumerate(grid):
+        for x in range(len(row)):
             total_xmas_patterns += count_xmas_patterns(x, y, grid)
             total_xmas_cross_patterns += count_xmas_cross_patterns(x, y, grid)
 
