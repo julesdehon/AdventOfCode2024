@@ -8,7 +8,7 @@ TEMPLATE = r"""from pathlib import Path
 
 
 def main() -> None:
-    input_lines = Path("input/input.txt").read_text("utf-8").split("\n")
+    input_lines = Path("input/input.txt").read_text("utf-8").strip().split("\n")
 
 
 if __name__ == "__main__":
