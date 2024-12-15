@@ -25,14 +25,14 @@ class Guard:
         (x, y) = self.position
         if self.direction == Direction.RIGHT:
             return x + 1, y
-        elif self.direction == Direction.DOWN:
+        if self.direction == Direction.DOWN:
             return x, y + 1
-        elif self.direction == Direction.LEFT:
+        if self.direction == Direction.LEFT:
             return x - 1, y
-        elif self.direction == Direction.UP:
+        if self.direction == Direction.UP:
             return x, y - 1
 
-        raise Exception("Unknown Direction")
+        raise ValueError("Unknown Direction")
 
     def move_forward(self) -> None:
         self.position = self.get_next_position()
@@ -47,7 +47,7 @@ class Guard:
         elif self.direction == Direction.UP:
             self.direction = Direction.RIGHT
         else:
-            raise Exception("Unknown Direction")
+            raise ValueError("Unknown Direction")
 
 
 @dataclass
@@ -65,8 +65,8 @@ class Map:
         rows = map_str.split("\n")
         height = len(rows)
         width = len(rows[0])
-        for y, row in enumerate(rows):
-            for x in range(len(row)):
+        for y in range(height):
+            for x in range(width):
                 if rows[y][x] == ".":
                     continue
                 if rows[y][x] == "^":
@@ -75,7 +75,7 @@ class Map:
                     obstacles.add((x, y))
 
         if guard is None:
-            raise Exception("No guard found")
+            raise ValueError("No guard found")
 
         return Map(width, height, obstacles, guard)
 

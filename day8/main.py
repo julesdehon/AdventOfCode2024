@@ -12,9 +12,9 @@ def add(coord1: Coord, coord2: Coord) -> Coord:
     return x1 + x2, y1 + y2
 
 
-def subtract(coord1: Coord, coord2: Coord) -> Coord:
-    x1, y1 = coord1
-    x2, y2 = coord2
+def subtract(minuend: Coord, subtrahend: Coord) -> Coord:
+    x1, y1 = minuend
+    x2, y2 = subtrahend
 
     return x1 - x2, y1 - y2
 
@@ -42,7 +42,7 @@ class AntennaMap:
 
     def count_antinodes(self) -> int:
         antinodes = set()
-        for frequency, coords in self.antenna_locations.items():
+        for coords in self.antenna_locations.values():
             for coord1 in coords:
                 for coord2 in coords:
                     if coord1 == coord2:
@@ -61,7 +61,7 @@ class AntennaMap:
 
     def count_antinodes2(self) -> int:
         antinodes = set()
-        for frequency, coords in self.antenna_locations.items():
+        for coords in self.antenna_locations.values():
             for coord1 in coords:
                 for coord2 in coords:
                     if coord1 == coord2:
